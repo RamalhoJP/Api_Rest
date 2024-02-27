@@ -21,6 +21,16 @@ export default class User extends Model {
           isEmail: {
             msg: 'Email invalido',
           },
+          isUnique(value, next) {
+            User.findOne({ where: { email: value } })
+              .then((user) => {
+                if (user) {
+                  return next('E-mail já existe, tente outro!');
+                }
+                return next();
+              })
+              .catch((err) => next(err));
+          },
         },
       },
       password_hash: {

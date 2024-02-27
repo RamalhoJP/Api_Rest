@@ -41,7 +41,7 @@ class HomeController {
         order: [['id', 'ASC'], [Foto, 'id', 'DESC']],
         include: {
           model: Foto,
-          attributes: ['filename'],
+          attributes: ['filename', 'url'],
         },
       });
 
